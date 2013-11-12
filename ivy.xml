@@ -1,0 +1,17 @@
+<ivy-module version="2.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:noNamespaceSchemaLocation="http://ant.apache.org/ivy/schemas/ivy.xsd">
+
+	<info organisation="br.com.fluentcode" module="jndi-example" />
+
+	<configurations>
+		<conf name="teste" />
+		<conf name="principal" />
+	</configurations>
+
+	<dependencies>
+		<dependency org="junit" name="junit" rev="4.11" conf="teste->default" />
+		<dependency org="org.jboss.as" name="jboss-as-ejb-client-bom" rev="7.2.0.Final" conf="principal->default"/>
+	</dependencies>
+
+</ivy-module>

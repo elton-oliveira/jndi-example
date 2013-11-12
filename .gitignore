@@ -1,0 +1,9 @@
+*.class
+lib-teste/
+lib/
+
+# Eclipse files and folder #
+.classpath
+.project
+.settings
+bin/
