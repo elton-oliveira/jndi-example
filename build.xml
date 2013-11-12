@@ -1,4 +1,4 @@
-<project name="agenda" xmlns:ivy="antlib:org.apache.ivy.ant" default="atualiza">
+<project name="agenda" xmlns:ivy="antlib:org.apache.ivy.ant" default="empacotar">
 
 	<path id="ivy.lib.path">
 		<pathelement location="ivy-2.3.0.jar" />
@@ -10,11 +10,29 @@
 		<mkdir dir="lib" />
 		<delete dir="lib-teste" />
 		<mkdir dir="lib-teste" />
+		<delete dir="build" />
+		<mkdir dir="build" />
 	</target>
 
-	<target name="atualiza" description="resolver as dependências do projeto" depends="limpar">
+	<target name="resolver" description="resolver as dependências do projeto" depends="limpar">
 		<ivy:retrieve conf="teste" pattern="lib-teste/[artifact]-[revision].[ext]"/>
 		<ivy:retrieve conf="principal" pattern="lib/[artifact]-[revision].[ext]"/>
+	</target>
+
+	<!-- preciso compilar também as classes de teste, pois vou rodar o teste pelo ant?????????????-->
+	<target name="compilar" depends="resolver">
+		<javac srcdir="src" destdir="build" >
+			<classpath>
+				<fileset dir="lib">
+					<include name="*.jar" />
+				</fileset>
+			</classpath>
+		</javac>
+	</target>
+	
+	<!-- O atributo basedir indica onde estão os .class necessários para gerar o jar-->
+	<target name="empacotar" depends="compilar" >
+	    <jar destfile="build/treinamento.jar" basedir="build" />
 	</target>
 
 </project>
