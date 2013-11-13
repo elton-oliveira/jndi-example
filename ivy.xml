@@ -12,6 +12,7 @@
 	<dependencies>
 		<dependency org="junit" name="junit" rev="4.11" conf="teste->default" />
 		<dependency org="org.jboss.as" name="jboss-as-ejb-client-bom" rev="7.2.0.Final" conf="principal->default"/>
+		<dependency org="org.jboss.as" name="jboss-as-jms-client-bom" rev="7.2.0.Final" conf="principal->default"/>
 	</dependencies>
 
 </ivy-module>

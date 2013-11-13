@@ -20,6 +20,8 @@ public class ConnectionTest {
 		}
 
 		assertNotNull(context);
+		
+		fail();//TODO forca uma falha pois lista de jars do jboss nao funciona como joboss-client.jar
 
 	}
 
