@@ -7,22 +7,22 @@
 
 	<property file="build.properties" />
 
-	<path id="classpath.compile">
+	<path id="path.compile.id">
 		<fileset dir="${lib.dir}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
 
-	<path id="classpath.test.compile">
-		<path refid="classpath.compile" />
+	<path id="path.test.compile.id">
+		<path refid="path.compile.id" />
 		<pathelement path="${class.dir}" />
 		<fileset dir="${lib.test.dir}">
 			<include name="*.jar" />
 		</fileset>
 	</path>
 
-	<path id="classpath.test.run">
-		<path refid="classpath.test.compile" />
+	<path id="path.test.run.id">
+		<path refid="path.test.compile.id" />
 		<pathelement path="${class.test.dir}" />
 	</path>
 
@@ -56,7 +56,7 @@
       ================================= -->
 	<target name="compilar" depends="resolver">
 		<javac srcdir="src" destdir="${class.dir}">
-			<classpath refid="classpath.compile" />
+			<classpath refid="path.compile.id" />
 		</javac>
 		<copy todir="${class.dir}">
 			<fileset dir="src">
@@ -85,7 +85,7 @@
 	</target>
 
 	<manifestclasspath property="jar.classpath" jarfile="${build.dir}/${jar.name}">
-		<classpath refid="classpath.compile" />
+		<classpath refid="path.compile.id" />
 	</manifestclasspath>
 	
 
@@ -94,7 +94,7 @@
       ================================= -->
 	<target name="compilar-teste" depends="compilar">
 		<javac destdir="${class.test.dir}" srcdir="test" >
-			<classpath refid="classpath.test.compile" />
+			<classpath refid="path.test.compile.id" />
 		</javac>
 	</target>
 
@@ -113,7 +113,7 @@
 					<include name="**/*Test.java" />
 				</fileset>
 			</batchtest>
-			<classpath refid="classpath.test.run" />
+			<classpath refid="path.test.run.id" />
 		</junit>
 	</target>
 
