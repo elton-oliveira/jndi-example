@@ -1,7 +1,7 @@
 *.class
 lib-test/
 lib/
-build/
+target/
 
 # Eclipse files and folder #
 .classpath

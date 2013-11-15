@@ -15,7 +15,7 @@
 
 	<path id="classpath.test.compile">
 		<path refid="classpath.compile" />
-		<pathelement path="build/classes" />
+		<pathelement path="${class.dir}" />
 		<fileset dir="${test.lib.dir}">
 			<include name="*.jar" />
 		</fileset>
@@ -75,17 +75,16 @@
        target: package              
       ================================= -->
 	<target name="empacotar" depends="compilar" >
-		<!-- O atributo basedir indica onde estão os .class necessários para gerar o jar-->
-		<jar destfile="${build.dir}/${jar.name}" basedir="${build.dir}"><!-- presica tirar folder test daqui, preciso restruturar o build ?????-->
+		<!-- The basedir attribute indicates where the files needed are to generate the jar -->
+		<jar destfile="${build.dir}/${jar.name}" basedir="${build.dir}">
 			<manifest>
 				<attribute name="Class-Path" value="${jar.classpath}"/>
 			</manifest>
 		</jar>
 		<echo>Manifest Classpath: ${jar.classpath}</echo>
 	</target>
-	<!-- acho que o manifest ainda não achará os jars pois o manifest fica dentro de uma pasta, 
-	talvez deva corrigir o caminho da propriedade jarfile para ${build.dir}/${jar.name} ???????-->
-	<manifestclasspath property="jar.classpath" jarfile="${jar.name}">
+
+	<manifestclasspath property="jar.classpath" jarfile="${build.dir}/${jar.name}">
 		<classpath refid="classpath.compile" />
 	</manifestclasspath>
 	
