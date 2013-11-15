@@ -1,4 +1,4 @@
-<project name="JNDI-Example" xmlns:ivy="antlib:org.apache.ivy.ant" default="compilar">
+<project name="JNDI-Example" xmlns:ivy="antlib:org.apache.ivy.ant" default="empacotar">
 
 	<path id="ivy.lib.path">
 		<pathelement location="ivy-2.3.0.jar" />
@@ -74,19 +74,21 @@
 	<!-- ================================= 
        target: package              
       ================================= -->
-	<!-- a lib precisa fazer parte do jar, depois rever isso ?????-->
 	<target name="empacotar" depends="compilar" >
 		<!-- O atributo basedir indica onde estão os .class necessários para gerar o jar-->
-		<manifestclasspath property="jar.classpath" jarfile="acme.jar"> <!-- para que esse jarfile???????-->
-			<classpath refid="classpath.compile" />
-		</manifestclasspath>
-		<jar destfile="${build.dir}/jndi-example.jar" basedir="${build.dir}"><!-- presica tirar folder test daqui, preciso restruturar o build ?????-->
+		<jar destfile="${build.dir}/${jar.name}" basedir="${build.dir}"><!-- presica tirar folder test daqui, preciso restruturar o build ?????-->
 			<manifest>
 				<attribute name="Class-Path" value="${jar.classpath}"/>
 			</manifest>
 		</jar>
+		<echo>Manifest Classpath: ${jar.classpath}</echo>
 	</target>
-
+	<!-- acho que o manifest ainda não achará os jars pois o manifest fica dentro de uma pasta, 
+	talvez deva corrigir o caminho da propriedade jarfile para ${build.dir}/${jar.name} ???????-->
+	<manifestclasspath property="jar.classpath" jarfile="${jar.name}">
+		<classpath refid="classpath.compile" />
+	</manifestclasspath>
+	
 
 	<!-- ================================= 
        target: compile test              
