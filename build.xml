@@ -23,7 +23,7 @@
 
 	<path id="classpath.test.run">
 		<path refid="classpath.test.compile" />
-		<pathelement path="${test-class.dir}" />
+		<pathelement path="${class.test.dir}" />
 	</path>
 
 
@@ -38,7 +38,7 @@
 		<delete dir="${build.dir}" />
 		<mkdir dir="${build.dir}" />
 		<mkdir dir="${class.dir}" />
-		<mkdir dir="${test-class.dir}" />
+		<mkdir dir="${class.test.dir}" />
 	</target>
 
 
@@ -93,7 +93,7 @@
        target: compile test              
       ================================= -->
 	<target name="compilar-teste" depends="compilar">
-		<javac destdir="${test-class.dir}" srcdir="test" >
+		<javac destdir="${class.test.dir}" srcdir="test" >
 			<classpath refid="classpath.test.compile" />
 		</javac>
 	</target>
