@@ -75,7 +75,7 @@
        target: package              
       ================================= -->
 	<target name="empacotar" depends="compilar" >
-		<!-- The basedir attribute indicates where the necessary files are to generate the jar -->
+		<!-- The basedir attribute indicates the path where the files are to be included in JAR. -->
 		<jar destfile="${build.dir}/${jar.name}" basedir="${build.dir}">
 			<manifest>
 				<attribute name="Class-Path" value="${jar.classpath}"/>
