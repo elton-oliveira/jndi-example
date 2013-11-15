@@ -4,11 +4,19 @@
 
 	<info organisation="br.com.fluentcode" module="jndi-example" />
 
+<!-- Cria configurações para quando, no build.xml, retrieve as dependências
+seja possível separa-lás por pasta	 -->
 	<configurations>
 		<conf name="teste" />
 		<conf name="principal" />
 	</configurations>
 
+	<!-- O atributo conf associa as depêdencias a uma configuração previamente 
+		declarada, em outras palavras, classifica as dependências -->
+	<!-- Para cada dependência queremos que o IVY carregue apenas o JAR's (dependência 
+		e dependências transitivas) e nenhuma dependência opcional, nem o javadoc 
+		ou código fonte, por isso adicionaremos a configuração default para cada 
+		dependência. -->
 	<dependencies>
 		<dependency org="junit" name="junit" rev="4.11" conf="teste->default" />
 		<dependency org="org.jboss.as" name="jboss-as-ejb-client-bom" rev="7.2.0.Final" conf="principal->default"/>

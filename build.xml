@@ -1,4 +1,4 @@
-<project name="JNDI-Example" xmlns:ivy="antlib:org.apache.ivy.ant" default="empacotar">
+<project name="JNDI-Example" xmlns:ivy="antlib:org.apache.ivy.ant" default="compilar">
 
 	<path id="ivy.lib.path">
 		<pathelement location="ivy-2.3.0.jar" />
@@ -45,7 +45,7 @@
 	<!-- ================================= 
        target: resolve              
       ================================= -->
-	<target name="resolver" description="resolver as dependências do projeto" depends="limpar">
+	<target name="resolver" depends="limpar">
 		<ivy:retrieve conf="teste" pattern="${test.lib.dir}/[artifact]-[revision].[ext]"/>
 		<ivy:retrieve conf="principal" pattern="${lib.dir}/[artifact]-[revision].[ext]"/>
 	</target>
@@ -55,17 +55,21 @@
        target: compile              
       ================================= -->
 	<target name="compilar" depends="resolver">
-		<javac srcdir="src" destdir="${class.dir}" >
-			<classpath refid="classpath.compile"/>
+		<javac srcdir="src" destdir="${class.dir}">
+			<classpath refid="classpath.compile" />
 		</javac>
+		<copy todir="${class.dir}">
+			<fileset dir="src">
+				<include name="*.properties" />
+			</fileset>
+		</copy>
 	</target>
 
 
 	<!-- ================================= 
        target: package              
       ================================= -->
-	<!-- o jndi properties também precisa fazer parte do jar, depois rever isso ?????-->
-	<!-- a lib também precisa fazer parte do jar, depois rever isso ?????-->
+	<!-- a lib precisa fazer parte do jar, depois rever isso ?????-->
 	<target name="empacotar" depends="compilar" >
 		<!-- O atributo basedir indica onde estão os .class necessários para gerar o jar-->
 		<jar destfile="${build.dir}/jndi-example.jar" basedir="${class.dir}" />
