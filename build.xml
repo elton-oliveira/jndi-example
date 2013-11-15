@@ -63,11 +63,6 @@
 				<include name="*.properties" />
 			</fileset>
 		</copy>
-		<copy todir="${build.dir}">
-			<fileset dir=".">
-				<include name="${lib.dir}/*.jar" />
-			</fileset>
-		</copy>
 	</target>
 
 
