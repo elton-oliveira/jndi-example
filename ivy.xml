@@ -11,7 +11,7 @@
 		<conf name="principal" />
 	</configurations>
 
-	<!-- The attribute conf associates dependencies to a configuration previously 
+	<!-- The conf attribute associates dependencies to a configuration previously 
 		declared, in other words, classifies dependencies. 
 		We also want Ivy only load the JAR's (dependency and transitive dependencies) and 
 		no dependency optional, not javadoc or source code, so add default configuration 
