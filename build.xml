@@ -77,21 +77,14 @@
 	<!-- a lib precisa fazer parte do jar, depois rever isso ?????-->
 	<target name="empacotar" depends="compilar" >
 		<!-- O atributo basedir indica onde estão os .class necessários para gerar o jar-->
-		<manifestclasspath property="jar.classpath" jarfile="acme.jar">
+		<manifestclasspath property="jar.classpath" jarfile="acme.jar"> <!-- para que esse jarfile???????-->
 			<classpath refid="classpath.compile" />
 		</manifestclasspath>
-		<jar destfile="${build.dir}/jndi-example.jar" basedir="${class.dir}">
+		<jar destfile="${build.dir}/jndi-example.jar" basedir="${build.dir}"><!-- presica tirar folder test daqui, preciso restruturar o build ?????-->
 			<manifest>
 				<attribute name="Class-Path" value="${jar.classpath}"/>
 			</manifest>
 		</jar>
-	</target>
-
-	<target name="mensagem-do-classpath-kkkkkkkkkkkkkkkkkk">
-		<manifestclasspath property="jar.classpath" jarfile="acme.jar">
-			<classpath refid="classpath.compile" />
-		</manifestclasspath>
-		<echo message="Manifest Classpath: ${jar.classpath}" />
 	</target>
 
 
@@ -122,6 +115,5 @@
 			<classpath refid="classpath.test.run" />
 		</junit>
 	</target>
-
 
 </project>
