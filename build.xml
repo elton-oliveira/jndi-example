@@ -63,6 +63,11 @@
 				<include name="*.properties" />
 			</fileset>
 		</copy>
+		<copy todir="${build.dir}">
+			<fileset dir=".">
+				<include name="${lib.dir}/*.jar" />
+			</fileset>
+		</copy>
 	</target>
 
 
@@ -72,7 +77,21 @@
 	<!-- a lib precisa fazer parte do jar, depois rever isso ?????-->
 	<target name="empacotar" depends="compilar" >
 		<!-- O atributo basedir indica onde estão os .class necessários para gerar o jar-->
-		<jar destfile="${build.dir}/jndi-example.jar" basedir="${class.dir}" />
+		<manifestclasspath property="jar.classpath" jarfile="acme.jar">
+			<classpath refid="classpath.compile" />
+		</manifestclasspath>
+		<jar destfile="${build.dir}/jndi-example.jar" basedir="${class.dir}">
+			<manifest>
+				<attribute name="Class-Path" value="${jar.classpath}"/>
+			</manifest>
+		</jar>
+	</target>
+
+	<target name="mensagem-do-classpath-kkkkkkkkkkkkkkkkkk">
+		<manifestclasspath property="jar.classpath" jarfile="acme.jar">
+			<classpath refid="classpath.compile" />
+		</manifestclasspath>
+		<echo message="Manifest Classpath: ${jar.classpath}" />
 	</target>
 
 
