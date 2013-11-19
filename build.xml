@@ -1,4 +1,4 @@
-<project name="JNDI-Example" xmlns:ivy="antlib:org.apache.ivy.ant" default="empacotar">
+<project name="JNDI-Example" xmlns:ivy="antlib:org.apache.ivy.ant" default="compilar">
 
 	<path id="ivy.lib.path">
 		<pathelement location="ivy-2.3.0.jar" />
@@ -73,16 +73,12 @@
 		<!-- The basedir attribute indicates the path where the files are to be included in JAR. -->
 		<jar destfile="${build.dir}/${jar.name}" basedir="${class.dir}">
 			<manifest>
-				<attribute name="Class-Path" value="${jar.classpath}"/>
+				<attribute name="Main-Class" value="br.com.fluentcode.jndi.Connection" />
 			</manifest>
+			<zipgroupfileset dir="${lib.dir}" includes="*.jar" />
 		</jar>
-		<echo>Manifest Classpath: ${jar.classpath}</echo>
 	</target>
 
-	<manifestclasspath property="jar.classpath" jarfile="${build.dir}/${jar.name}">
-		<classpath refid="path.compile.id" />
-	</manifestclasspath>
-	
 
 	<!-- ================================= 
        target: compile test              

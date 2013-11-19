@@ -1,8 +1,11 @@
 package br.com.fluentcode.jndi;
 
+import java.awt.HeadlessException;
+
 import javax.naming.Context;
 import javax.naming.InitialContext;
 import javax.naming.NamingException;
+import javax.swing.JOptionPane;
 
 public class Connection {
 	
@@ -14,6 +17,14 @@ public class Connection {
 	 */
 	public static Context open() throws NamingException{
 		return new InitialContext();
+	}
+	
+	public static void main(String[] args) {
+		try {
+			JOptionPane.showMessageDialog(null, open());
+		} catch (HeadlessException | NamingException e) {
+			JOptionPane.showMessageDialog(null, e.getLocalizedMessage());
+		}
 	}
 
 }
