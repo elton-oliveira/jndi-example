@@ -46,8 +46,8 @@
        target: resolve              
       ================================= -->
 	<target name="resolver" depends="limpar">
-		<ivy:retrieve conf="teste" pattern="${lib.test.dir}/[artifact]-[revision].[ext]"/>
-		<ivy:retrieve conf="principal" pattern="${lib.dir}/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve conf="test" pattern="${lib.test.dir}/[artifact]-[revision].[ext]"/>
+		<ivy:retrieve conf="compile" pattern="${lib.dir}/[artifact]-[revision].[ext]"/>
 	</target>
 
 
