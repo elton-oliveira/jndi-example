@@ -1,9 +1,9 @@
-lib-test/
-lib/
-target/
+lib-test
+lib
+target
 
 # Eclipse files and folder #
 .classpath
 .project
 .settings
-bin/
+/bin
